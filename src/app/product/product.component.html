@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control col-5" (keydown.enter)="onKeydown($event)" [(ngModel)]="busqueda">
+    <button id="btn" type="button" class="btn btn-success ml-3" (click)="onKeydown($event)">Buscar producto</button>
+  </div>
+  <div *ngIf="busqueda.length>0" class="mb-3">
+    <p>Buscando: {{busqueda}}</p>
+  </div>
+  <div *ngIf="productos.length==0" class="alert alert-dark" role="alert">
+    <strong>Error: </strong> No se encontró el producto
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="defaultCheck1" [(ngModel)]="activado">
+    <label class="form-check-label" for="defaultCheck1">
+      Solo en existencia
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="defaultCheck2">
+    <label class="form-check-label" for="defaultCheck2">
+      Ordenar por precio (menor a mayor)
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="defaultCheck3">
+    <label class="form-check-label" for="defaultCheck3">
+      Resaltar existencia mayor a 3
+    </label>
+  </div>
+ 
+  <div class="row" *ngFor="let producto of productos">
+    <div class="col-12">
+      <hr>
+    </div>
+    <div class="col-3">
+      <img src="{{imagen}}" alt="">
+    </div>
+    <div class="col-8">
+      <strong>{{producto.nombre}}</strong>
+      <p>Precio(MXN): ${{producto.precio}}</p>
+      <p>Marca: {{producto.marca}}</p>
+      <p>Descripcion: {{producto.descripcion}}</p>
+      <p>Existencia: {{producto.existencia}}</p>
+    </div>
+  </div>
+</div>
